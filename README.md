@@ -14,7 +14,6 @@ Objective
 
 Maintain and display their wallet balance.
 
-This document outlines the module’s functionality, database structure, and implementation details.
 
 Features
 
@@ -42,4 +41,4 @@ Transactions are displayed in descending order of date.
 
 The module maintains a separate table wallet_balance for each customer’s wallet balance.
 
-Balance updates are synchronized with transact
+Balance updates are synchronized with transaction.
