@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="wallet_balance" resource="default" engine="innodb" comment="Customer Wallet Balance">
+        <column name="customer_id" xsi:type="int" unsigned="true" nullable="false" comment="Customer ID" />
+        <column name="balance" xsi:type="decimal" nullable="false" scale="2" precision="10" default="0.00" comment="Wallet Balance" />
+        <column name="updated_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Last Updated At" />        
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_ID_BAL_REF" table="wallet_balance" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE" />
+    </table>
+
+    <table name="wallet_transaction" resource="default" engine="innodb" comment="Customer Wallet Transactions">
+        <column name="transaction_id" xsi:type="int" nullable="false" identity="true" comment="Transaction ID" />
+        <column name="customer_id" xsi:type="int" unsigned="true" nullable="false" comment="Customer ID" />
+        <column name="amount" xsi:type="decimal" nullable="false" scale="2" precision="10" comment="Amount" />
+        <column name="transaction_type" xsi:type="varchar" nullable="false" length="255" comment="Transaction Type" />
+        <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At" />
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_ID_TRANS_REF" table="wallet_transaction" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE" />
+        <constraint xsi:type="primary" referenceId="transaction_id">
+            <column name="transaction_id"/>
+        </constraint>
+    </table>
+</schema>

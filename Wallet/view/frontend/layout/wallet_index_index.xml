@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">WALLET</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Solveda\Wallet\Block\Customer\Wallet" name="customer_wallet_balance" template="Solveda_Wallet::balance.phtml" />
+            <!-- <block class="Solveda\Wallet\Block\Customer\Transaction" name="customer_wallet_transactions" template="Solveda_Wallet::transaction.phtml" /> -->
+        </referenceContainer>
+    </body>
+</page>
