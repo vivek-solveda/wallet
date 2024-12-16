@@ -29,7 +29,7 @@ class Wallet extends Template
         
         if ($this->_customerSession->isLoggedIn()) {
             $customerId = $this->_customerSession->getCustomer()->getId();
-            var_dump('Customer ID:', $customerId);
+            //var_dump('Customer ID:', $customerId);
         }
         $balanceData = $this->balanceResource->loadByCustomerId($customerId);
         
