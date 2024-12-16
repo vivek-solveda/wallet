@@ -1,0 +1,7 @@
+<form action="<?= $block->getAddMoneyActionUrl() ?>" method="post">
+    <div>
+        <label for="wallet_amount">Enter Amount:</label>
+        <input type="number" name="wallet_amount" id="wallet_amount" required min="1" step="0.01">
+    </div>
+    <button type="submit">Add Money</button>
+</form>
