@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="checkout.payment.methods.list">
-            <block class="Magento\Framework\View\Element\Template" name="wallet_payment_renderer" as="wallet_payment" template="Vendor_Wallet::payment/wallet.phtml">
+            <block class="Magento\Framework\View\Element\Template" name="wallet_payment_renderer" as="wallet_payment" template="Solveda_Wallet::payment/wallet.phtml">
                 <arguments>
                     <argument name="jsLayout" xsi:type="array">
                         <item name="wallet_payment" xsi:type="array">

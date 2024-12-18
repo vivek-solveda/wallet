@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/config.xsd">
+    <default>
+        <payment>
+            <wallet_payment>
+                <active>1</active>
+                <model>Solveda\Wallet\Model\Payment\Wallet</model>
+                <title>Wallet Payment</title>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+                <sort_order>50</sort_order>
+            </wallet_payment>
+        </payment>
+    </default>
+</config>
