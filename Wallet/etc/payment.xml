@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
+    <method name="wallet_payment">
+        <group>offline</group>
+        <title>Wallet Payment</title>
+        <model>Solveda\Wallet\Model\Payment\Wallet</model>
+        <active>true</active>
+        <is_offline>true</is_offline>
+        <sort_order>1</sort_order>
+    </method>
+</payment>
