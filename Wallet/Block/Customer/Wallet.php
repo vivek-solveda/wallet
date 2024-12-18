@@ -6,6 +6,7 @@ use Magento\Framework\View\Element\Template;
 use Solveda\Wallet\Model\ResourceModel\Balance as BalanceResource;
 use Magento\Customer\Model\SessionFactory;
 
+
 class Wallet extends Template
 {
     protected $balanceResource;
@@ -29,7 +30,6 @@ class Wallet extends Template
         
         if ($this->_customerSession->isLoggedIn()) {
             $customerId = $this->_customerSession->getCustomer()->getId();
-            //var_dump('Customer ID:', $customerId);
         }
         $balanceData = $this->balanceResource->loadByCustomerId($customerId);
         

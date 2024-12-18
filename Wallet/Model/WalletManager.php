@@ -35,4 +35,19 @@ class WalletManager
         $balance->setBalance($newBalance);
         $this->balanceResource->save($balance);
     }
+
+    public function deductWalletBalance($customerId, $amount)
+    {
+        $balance = $this->balanceFactory->create();
+        $this->balanceResource->load($balance, $customerId, 'customer_id');
+
+        if ($balance->getId() && $balance->getBalance() >= $amount) {
+            $newBalance = $balance->getBalance() - $amount;
+            $balance->setBalance($newBalance);
+            $this->balanceResource->save($balance);
+        } else {
+            throw new \Exception(__('Insufficient wallet balance.'));
+        }
+    }
+
 }
