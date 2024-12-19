@@ -3,4 +3,7 @@
     <event name="sales_order_place_after">
         <observer name="deduct_wallet_balance" instance="Solveda\Wallet\Observer\DeductWalletObserver" />
     </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="add_wallet_balance_on_invoice" instance="Solveda\Wallet\Observer\AddToWalletOnInvoice" />
+    </event>
 </config>
