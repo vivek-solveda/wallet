@@ -1,0 +1,33 @@
+<h2>Transaction History</h2>
+<?php
+$transactions = $block->getTransactionHistory();
+//var_dump($transactions);
+?>
+<?php if ($transactions): ?>
+    <?php if (count($transactions) > 0): ?>
+        <table class="table-data">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($transactions as $transaction): ?>
+                    <tr>
+                        <td><?$transaction['transaction_id']?></td>
+                        <!-- <td><?//= $transaction->getAmount(); ?></td> -->
+                        <!-- <td><?//= $transaction->getTransactionType(); ?></td> -->
+                        <!-- <td><?//= $transaction->getCreatedAt(); ?></td> -->
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>No transactions found.</p>
+    <?php endif; ?>
+<?php else: ?>
+    <p>Error retrieving transactions.</p>
+<?php endif; ?>
