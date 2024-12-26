@@ -8,6 +8,6 @@ class Collection extends AbstractCollection
 {
     protected function _construct()
     {
-        $this->_init(\Solveda\Wallet\Model\Transaction::class, \Solveda\Wallet\Model\ResourceModel\Transaction::class);
+        $this->_init(\Solveda\Wallet\Model\TransactionHistory::class, \Solveda\Wallet\Model\ResourceModel\Transaction::class);
     }
 }

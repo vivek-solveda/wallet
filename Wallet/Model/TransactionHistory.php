@@ -5,7 +5,7 @@ namespace Solveda\Wallet\Model;
 use Solveda\Wallet\Model\ResourceModel\Transaction\CollectionFactory as TransactionCollectionFactory;
 use Magento\Customer\Model\Session;
 
-class TransactionHistory
+class TransactionHistory extends \Magento\Framework\DataObject
 {
     protected $transactionCollectionFactory;
     protected $customerSession;
@@ -20,15 +20,15 @@ class TransactionHistory
 
     public function getTransactionHistory()
     {
-        $customerId = $this->customerSession->getCustomer();
-        var_dump($customerId);
+        $customerId = $this->customerSession->getCustomerId();
         if (!$customerId) {
             return [];
         }
 
         $transactionCollection = $this->transactionCollectionFactory->create()
             ->addFieldToFilter('customer_id', $customerId)
-            ->setOrder('created_at', 'DESC');
+            ->setOrder('created_at', 'DESC')
+            ->setPageSize(5);
 
         return $transactionCollection->getItems();
     }
