@@ -8,7 +8,7 @@
         </referenceBlock>
         <referenceContainer name="content">
             <block class="Solveda\Wallet\Block\Customer\Wallet" name="customer_wallet_balance" template="Solveda_Wallet::balance.phtml" />
-            <!-- <block class="Solveda\Wallet\Block\Customer\Transaction" name="customer_wallet_transactions" template="Solveda_Wallet::transaction.phtml" /> -->
+            <block class="Solveda\Wallet\Block\Customer\Transaction" name="customer_wallet_transactions" template="Solveda_Wallet::transaction.phtml" />
             <block class="Solveda\Wallet\Block\Customer\AddMoney" name="customer_wallet_add_money" template="Solveda_Wallet::add_money.phtml" />
         </referenceContainer>
     </body>
