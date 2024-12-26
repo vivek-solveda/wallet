@@ -5,28 +5,20 @@ namespace Solveda\Wallet\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Model\Order\Invoice;
-use Solveda\Wallet\Model\Balance;
-use Solveda\Wallet\Model\TransactionFactory;
-use Solveda\Wallet\Model\ResourceModel\Balance as BalanceResource;
-use Solveda\Wallet\Model\ResourceModel\Transaction as TransactionResource;
+use Solveda\Wallet\Model\Points;
+use Solveda\Wallet\Model\ResourceModel\Points as PointsResource;
 
-class AddToWalletOnInvoice implements ObserverInterface
+class AddPointsOnInvoice implements ObserverInterface
 {
-    protected $balanceModel;
-    protected $balanceResource;
-    protected $transactionFactory;
-    protected $transactionResource;
+    protected $pointsModel;
+    protected $pointsResource;
 
     public function __construct(
-        Balance $balanceModel,
-        BalanceResource $balanceResource,
-        TransactionFactory $transactionFactory,
-        TransactionResource $transactionResource
+        Points $pointsModel,
+        PointsResource $pointsResource
     ) {
-        $this->balanceModel = $balanceModel;
-        $this->balanceResource = $balanceResource;
-        $this->transactionFactory = $transactionFactory;
-        $this->transactionResource = $transactionResource;
+        $this->pointsModel = $pointsModel;
+        $this->pointsResource = $pointsResource;
     }
 
     public function execute(Observer $observer)
@@ -40,28 +32,19 @@ class AddToWalletOnInvoice implements ObserverInterface
             return;
         }
 
-        // Calculate 50% of the order's grand total
-        $walletAmount = $order->getGrandTotal() * 0.5;
+        // Calculate points (10x the order's grand total)
+        $pointsToAdd = $order->getGrandTotal() * 10;
 
-        $balance = $this->balanceModel->load($customerId, 'customer_id');
-        if (!$balance->getId()) {
-            $balance->setCustomerId($customerId);
-            $balance->setBalance(0);
+        // Load or create points entry for the customer
+        $points = $this->pointsModel->load($customerId, 'customer_id');
+        if (!$points->getId()) {
+            $points->setCustomerId($customerId);
+            $points->setPoints(0);
         }
 
-        // Update the wallet balance
-        $currentBalance = $balance->getBalance();
-        $balance->setBalance($currentBalance + $walletAmount);
-        $this->balanceResource->save($balance);
-
-        // Log transaction
-        $transaction = $this->transactionFactory->create();
-        $transaction->setData([
-            'customer_id' => $customerId,
-            'amount' => $walletAmount,
-            'transaction_type' => 'Credit',
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
-        $this->transactionResource->save($transaction);
+        // Update points balance
+        $currentPoints = $points->getPoints();
+        $points->setPoints($currentPoints + $pointsToAdd);
+        $this->pointsResource->save($points);
     }
 }
