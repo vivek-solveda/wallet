@@ -1,2 +1,7 @@
-<h2>Your Wallet Balance</h2>
-<p>Balance: <strong><?= $block->getCustomerBalance(); ?> $</strong></p>
+<div>
+    <p>Your Points: <?= $block->escapeHtml($block->getPoints()) ?></p>
+    <p>Wallet Balance: $<?= $block->escapeHtml($block->getCustomerBalance()) ?></p>
+    <form action="<?= $block->getUrl('wallet/points/redeem') ?>" method="post">
+        <button type="submit">Redeem Points</button>
+    </form>
+</div>
