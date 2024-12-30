@@ -9,7 +9,14 @@ use Magento\Customer\Model\Session as CustomerSession;
 
 class Wallet extends AbstractMethod
 {
-    protected $_code = 'wallet_payment';
+    public const PAYMENT_METHOD_WALLET_CODE = 'wallet_payment';
+
+    protected $_code = self::PAYMENT_METHOD_WALLET_CODE;
+
+    protected $_formBlockType = \Solveda\Wallet\Block\Form\WalletPayment::class;
+
+    protected $_infoBlockType = \Magento\Payment\Block\Info\Instructions::class;
+
     protected $_isOffline = true;
 
     /**

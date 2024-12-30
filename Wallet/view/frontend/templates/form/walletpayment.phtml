@@ -1,0 +1,8 @@
+<?php
+$instructions = $block->getInstructions();
+?>
+<?php if ($instructions): ?>
+    <div class="wallet-instructions">
+        <?= nl2br($block->escapeHtml($instructions)) ?>
+    </div>
+<?php endif; ?>
