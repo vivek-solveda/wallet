@@ -1,0 +1,12 @@
+<div>
+    <h3>Your Points: <span><?= $block->escapeHtml($block->getCustomerPoints()) ?></span></h3>
+    <form action="<?= $block->getUrl('wallet/points/redeem') ?>" method="post">
+        <button type="submit">Redeem Points</button>
+        <p style="margin-top: 5px; font-size: 0.9em; color: #555;">
+        Click "Redeem Points" to convert your points into wallet balance.
+        </p>
+    </form>
+</div>
+<div>
+    <h3>Wallet Balance: </h3><span>$<?= $block->escapeHtml($block->getCustomerBalance()) ?></span>
+</div>
