@@ -8,7 +8,7 @@
                 <title>Wallet Payment</title>
                 <allowspecific>0</allowspecific>
                 <group>offline</group>
-                <sort_order>50</sort_order>
+                <sort_order>1</sort_order>
             </wallet_payment>
         </payment>
     </default>

@@ -30,30 +30,26 @@ class Wallet extends Template
     public function getCustomerBalance()
     {
         $customerId = $this->getCustomerId();
-        if (!$customerId) {
-            return 0;
-        }
-
         $balanceData = $this->balanceResource->loadByCustomerId($customerId);
+        
         return $balanceData['balance'] ?? 0;
     }
 
     public function getCustomerPoints()
     {
         $customerId = $this->getCustomerId();
-        if (!$customerId) {
-            return 0;
-        }
-
         $pointsData = $this->pointsResource->loadByCustomerId($customerId);
+
         return $pointsData['points'] ?? 0;
     }
 
     private function getCustomerId()
     {
-        $this->customerSession->start();
-        if ($this->customerSession->isLoggedIn()) {
-            return $this->customerSession->getCustomer()->getId();
+        $customerId ='';
+        $this->_customerSession->start();
+        if ($this->_customerSession->isLoggedIn()) {
+            $customerId = $this->_customerSession->getCustomer()->getId();
+            return $customerId;
         }
         return null;
     }

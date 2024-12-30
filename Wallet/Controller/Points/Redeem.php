@@ -4,17 +4,21 @@ namespace Solveda\Wallet\Controller\Points;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Customer\Model\Session;
 use Solveda\Wallet\Model\WalletManager;
 
 class Redeem extends Action
 {
     protected $walletManager;
+    protected $_session;
 
     public function __construct(
         Context $context,
-        WalletManager $walletManager
+        WalletManager $walletManager,
+        Session $session
     ) {
         $this->walletManager = $walletManager;
+        $this->_session = $session;
         parent::__construct($context);
     }
 

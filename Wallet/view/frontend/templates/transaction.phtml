@@ -1,4 +1,5 @@
-<h2>Transaction History</h2>
+<h3>Transaction History</h3>
+<div>
 <?php
 $transactions = $block->getTransactionHistory();
 ?>
@@ -30,3 +31,4 @@ $transactions = $block->getTransactionHistory();
 <?php else: ?>
     <p>Error retrieving transactions.</p>
 <?php endif; ?>
+</div>

@@ -60,7 +60,7 @@ class Wallet extends AbstractMethod
             $registry,
             $extensionFactory,
             $customAttributeFactory,
-            $paymentData, // Matching type
+            $paymentData,
             $scopeConfig,
             $logger
         );
@@ -68,6 +68,7 @@ class Wallet extends AbstractMethod
         $this->balanceResource = $balanceResource;
         $this->balanceFactory = $balanceFactory;
         $this->customerSession = $customerSession;
+        $this->logger = $logger;
     }
 
     /**
@@ -78,15 +79,21 @@ class Wallet extends AbstractMethod
      */
     public function isAvailable(\Magento\Quote\Api\Data\CartInterface $quote = null)
     {
-        if (!$quote || !$this->customerSession->isLoggedIn()) {
+
+        if (!$quote) {
             return false;
         }
 
-        $customerId = $this->customerSession->getCustomerId();
+        $customerId = $quote->getCustomerId();
+        if (!$customerId) {
+            return false;
+        }
+
         $walletBalance = $this->getCustomerWalletBalance($customerId);
 
         return $walletBalance >= $quote->getGrandTotal();
     }
+
 
     /**
      * Get Customer Wallet Balance.

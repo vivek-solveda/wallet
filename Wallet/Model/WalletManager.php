@@ -7,6 +7,7 @@ use Solveda\Wallet\Model\BalanceFactory;
 use Solveda\Wallet\Model\ResourceModel\Transaction as TransactionResource;
 use Solveda\Wallet\Model\TransactionFactory;
 use Solveda\Wallet\Model\ResourceModel\Points as PointsResource;
+use Solveda\Wallet\Model\Points;
 
 class WalletManager
 {
@@ -109,7 +110,6 @@ class WalletManager
         // Update wallet balance
         $balance = $this->balanceFactory->create();
         $this->balanceResource->load($balance, $customerId, 'customer_id');
-        //$balance = $this->balanceModel->load($customerId, 'customer_id');
         if (!$balance->getId()) {
             $balance->setCustomerId($customerId);
             $balance->setBalance(0);
